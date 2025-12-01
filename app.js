@@ -6,7 +6,6 @@ import subscriptionRouter from './routes/subscription.routes.js';
 
 import connectToDatabase from './database/mongodb.js';
 
-connectToDatabase();
 
 
 const app = express();
@@ -19,6 +18,18 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/subscription', subscriptionRouter);
 
-app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
+const startServer = async () => {
+  try {
+    await connectToDatabase();    // connect first
+    app.listen(PORT, () => {      // start server after
+      console.log(`Server running on ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to start:", error);
+    process.exit(1);              // fail safely
+  }
+};
+
+startServer();
 
 export default app;

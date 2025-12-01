@@ -1,4 +1,4 @@
-import { connect, mongoose } from 'mongoose';
+import   mongoose  from 'mongoose';
 import { DB_URI, NODE_ENV } from '../config/env.js';
 
 if (!DB_URI) {
@@ -6,12 +6,10 @@ if (!DB_URI) {
 }
 
 
-
-
 async function connectToDatabase() {
     try {
         await mongoose.connect(DB_URI)
-        console.log("Connected to the database");
+        console.log(`Connected to the database ${NODE_ENV}`);
     } catch (error) {
         console.log("Error connecting to the databse",error);
         process.exit(1);
