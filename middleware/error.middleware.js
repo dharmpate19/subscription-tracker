@@ -8,8 +8,8 @@ const errorMiddleware = (err, req, res, next) => {
         console.error(err);
 
         //Mongoose bad ObjectId
-        if(err.name === 'CasteError'){
-            const message = 'Resoure not found';
+        if(err.name === 'CastError'){
+            const message = 'Resource not found';
             error = new Error(message);
             error.statusCode = 404;
         }
@@ -22,13 +22,14 @@ const errorMiddleware = (err, req, res, next) => {
         }
 
         //Mongoose validation error
-        if(err.code === 'ValidationError'){
+        if(err.name === 'ValidationError'){
             const message = Object.values(err.errors).map(val => val.message)
             error = new Error(message.join(', '));
             error.statusCode = 400;
         }
 
-        res.statusCode(error.statusCode || 500).JSON({
+        res.statusCode(error.statusCode || 500)
+        .json({
             success: false,
             error : error.message || 'Server Error'
         })
