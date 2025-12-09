@@ -21,7 +21,7 @@ app.get('/', (req,res) =>{
 })
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/user', userRouter);
+app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subscription', subscriptionRouter);
 
 app.use(errorMiddleware)
