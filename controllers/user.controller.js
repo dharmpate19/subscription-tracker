@@ -1,8 +1,8 @@
 import User from "../models/user.model.js";
 
-export const getUsers = async(req,res, next) => {
+export const getUsers = async (req,res, next) => {
     try {
-        const users = await User.find();
+        const users = await User.find().select('-password');
 
         res.status(200).json({
             success : true,
@@ -20,7 +20,7 @@ export const getUser = async(req,res, next) => {
 
         if(!user) {
             const error = new Error('User not found');
-            error.satusCode = 404;
+            error.statusCode = 404;
             throw error;
         }
 
