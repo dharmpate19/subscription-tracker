@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(arcjetMiddleware)
 
 app.get('/', (req,res) =>{
-    res.send("Welcome to teh subscription tracker API")
+    res.send("Welcome to the subscription tracker API")
 })
 
 app.use('/api/v1/auth', authRouter);
