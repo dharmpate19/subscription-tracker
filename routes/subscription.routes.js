@@ -8,6 +8,8 @@ subscriptionRouter.get('/', (req,res) => {
     res.json({title : "Get all subscription"})
 });
 
+subscriptionRouter.get('/user/:id', authorize, getUserSubscription);
+
 subscriptionRouter.get('/:id', (req,res) => {
     res.json({title : "Get subscription details"})
 });
@@ -22,7 +24,6 @@ subscriptionRouter.delete('/:id', (req,res) => {
     res.json({title : "Delete subscription"})
 });
 
-subscriptionRouter.get('/user/:id', authorize, getUserSubscription);
 
 subscriptionRouter.put('/:id/cancel', (req,res) => {
     res.json({title : `Cancel subscription`})
