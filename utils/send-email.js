@@ -7,7 +7,7 @@ export const sendReminderEmail = async({to, type, subscription}) => {
 
     const template = emailTemplates.find((t) => t.label === type);
 
-    if(!template) throw new Error('Invalid Emai Type');
+    if(!template) throw new Error('Invalid Email Type');
 
     const mailInfo = {
         userName : subscription.user.name,
